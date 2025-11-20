@@ -10,3 +10,4 @@ birthdayError: Geburtstag muss das Format JJJJ-MM-TT haben.
 apply: Auf diese Stelle bewerben
 errors:
     applicant-already-exists: Bewerber*in existiert bereits.
+empty: Aktuell sind keine offenen Stellen vorhanden.

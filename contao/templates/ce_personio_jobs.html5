@@ -1,15 +1,19 @@
 <?php $this->extend('block_unsearchable'); ?>
 
 <?php $this->block('content'); ?>
-  <?php foreach ($this->jobs as $job): ?>
-    <div class="job job--list">
-      <h2 class="name"><?= $job->name ?></h2>
-      <div class="employmentType"><?= $this->trans($job->employmentType, [], 'personio') ?></div>
-      <div class="schedule"><?= $this->trans($job->schedule, [], 'personio') ?></div>
-      <div class="office"><?= $job->office ?></div>
-      <?php if ($url = $this->getJobDetailUrl($job)): ?>
-        <p class="more"><a href="<?= $url ?>" aria-label="<?= $this->trans('MSC.readMore', [$job->name]) ?>"><?= $this->trans('MSC.more') ?></a>
-      <?php endif; ?>
-    </div>
-  <?php endforeach; ?>
+  <?php if (!$this->jobs): ?>
+    <p class="empty"><?= $this->trans('empty', [], 'personio') ?></p>
+  <?php else: ?>
+    <?php foreach ($this->jobs as $job): ?>
+      <div class="job job--list">
+        <h2 class="name"><?= $job->name ?></h2>
+        <div class="employmentType"><?= $this->trans($job->employmentType, [], 'personio') ?></div>
+        <div class="schedule"><?= $this->trans($job->schedule, [], 'personio') ?></div>
+        <div class="office"><?= $job->office ?></div>
+        <?php if ($url = $this->getJobDetailUrl($job)): ?>
+          <p class="more"><a href="<?= $url ?>" aria-label="<?= $this->trans('MSC.readMore', [$job->name]) ?>"><?= $this->trans('MSC.more') ?></a>
+        <?php endif; ?>
+      </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
 <?php $this->endblock(); ?>

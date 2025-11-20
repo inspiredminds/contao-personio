@@ -1,0 +1,13 @@
+permanent: Poziție permanentă
+intern: Stagiu
+trainee: Poziție de trainee
+freelance: Poziție freelance
+full-time: Normă întreagă
+part-time: Jumătate de normă
+full-or-part-time: Normă întreagă sau jumătate de normă
+submit: Trimite
+birthdayError: Data nașterii trebuie să aibă formatul AAAA-LL-ZZ.
+apply: Aplică pentru această poziție
+errors:
+    applicant-already-exists: Candidatul există deja.
+empty: În prezent nu există posturi vacante.

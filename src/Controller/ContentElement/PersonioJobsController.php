@@ -44,10 +44,6 @@ class PersonioJobsController extends AbstractContentElementController
             return new Response();
         }
 
-        if (!$template->jobs) {
-            return new Response();
-        }
-
         $template->getJobDetailUrl = function (Job $job) use ($model): string|null {
             if (!($jumpTo = PageModel::findById($model->jumpTo)) || PersonioJobPageController::TYPE !== $jumpTo->type) {
                 return null;
