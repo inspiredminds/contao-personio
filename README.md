@@ -16,7 +16,7 @@ contao_personio:
     xml_feed: https://{YOUR_COMPANY}.jobs.personio.de/xml
 ```
 
-For the Recruiting API you will need to define the Company ID and the [Recruiting API token](https://developer.personio.de/v1.0/reference/introduction-1):
+For the Recruiting API (i.e. sending applications to Personio directly via the website) you will need to define the Company ID and the [Recruiting API token](https://developer.personio.de/v1.0/reference/introduction-1):
 
 ```yaml
 # config/config.yaml
@@ -40,8 +40,11 @@ PERSONIO_RECRUITING_API_TOKEN=your-token
 ```yaml
 # config/config.yaml
 contao_personio:
+    company_id: 123456
     recruiting_api_token: '%env(PERSONIO_RECRUITING_API_TOKEN)%'
 ```
+
+You can of course also choose to store the Company ID as an environment variable (just like you can with any configuration values in Symfony).
 
 ## Job List
 
