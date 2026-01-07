@@ -16,7 +16,7 @@ contao_personio:
     xml_feed: https://{YOUR_COMPANY}.jobs.personio.de/xml
 ```
 
-For the Recruiting API you will need to define the Company ID and the Recruiting API token:
+For the Recruiting API you will need to define the Company ID and the [Recruiting API token](https://developer.personio.de/v1.0/reference/introduction-1):
 
 ```yaml
 # config/config.yaml
