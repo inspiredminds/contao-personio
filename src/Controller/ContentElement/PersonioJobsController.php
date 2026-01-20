@@ -14,6 +14,7 @@ use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Slug\Slug;
 use Contao\CoreBundle\Util\LocaleUtil;
 use Contao\PageModel;
+use Contao\StringUtil;
 use Contao\Template;
 use InspiredMinds\ContaoPersonio\Controller\Page\PersonioJobPageController;
 use InspiredMinds\ContaoPersonio\Model\Job;
@@ -35,7 +36,7 @@ class PersonioJobsController extends AbstractContentElementController
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
         try {
-            $template->jobs = $this->personioApi?->getJobs(LocaleUtil::getPrimaryLanguage($request->getLocale()))?->jobs;
+            $jobs = $this->personioApi?->getJobs(LocaleUtil::getPrimaryLanguage($request->getLocale()))?->jobs;
         } catch (\Throwable $e) {
             if ($this->container->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
                 return new Response('<p class="tl_error">'.$e->getMessage().'</p>');
@@ -43,6 +44,44 @@ class PersonioJobsController extends AbstractContentElementController
 
             return new Response();
         }
+
+        // Filter the jobs
+        if ($filter = StringUtil::deserialize($model->personio_listFilter, true)) {
+            $jobs = array_filter(
+                $jobs,
+                static function (Job $job) use ($filter): bool {
+                    foreach ($filter as $f) {
+                        if (($f['field'] ?? null) && property_exists($job, $f['field']) && $job->{$f['field']} !== $f['value']) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                },
+            );
+        }
+
+        // Sort the jobs
+        if ($sortField = $model->personio_sortField) {
+            $sortDir = $model->personio_sortDir;
+
+            usort(
+                $jobs,
+                static function (Job $a, Job $b) use ($sortField, $sortDir): int {
+                    if (!property_exists($a, $sortField) || !property_exists($b, $sortField)) {
+                        return 0;
+                    }
+
+                    if ('desc' === $sortDir) {
+                        return strcasecmp((string) $b->{$sortField}, (string) $a->{$sortField});
+                    }
+
+                    return strcasecmp((string) $a->{$sortField}, (string) $b->{$sortField});
+                },
+            );
+        }
+
+        $template->jobs = $jobs;
 
         $template->getJobDetailUrl = function (Job $job) use ($model): string|null {
             if (!($jumpTo = PageModel::findById($model->jumpTo)) || PersonioJobPageController::TYPE !== $jumpTo->type) {

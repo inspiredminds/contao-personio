@@ -16,6 +16,7 @@ class Job
 {
     public function __construct(
         public string $id,
+        public string|null $subcompany,
         public string $office,
         public string $department,
         public string|null $recruitingCategory,

@@ -20,6 +20,9 @@ services:
         arguments:
             $personioAuthApiRateLimiterFactory: '@contao_personio.rate_limit.personio_auth_api_factory'
 
+    InspiredMinds\ContaoPersonio\EventListener\JobsPropertyOptionsCallbackListener:
+        public: true
+
     contao_personio.personio_authenticated_api_client:
         class: Symfony\Contracts\HttpClient\HttpClientInteface
         factory: '@InspiredMinds\ContaoPersonio\HttpClient\PersonioAuthenticatedApiClientFactory'

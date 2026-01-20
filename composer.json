@@ -24,6 +24,7 @@
         "php": ">=8.1",
         "codefog/contao-haste": "^5.2",
         "contao/core-bundle": "^4.13 || ^5.0",
+        "mvo/contao-group-widget": "^1.6",
         "phpdocumentor/reflection-docblock": "^5.3",
         "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.1",
         "symfony/event-dispatcher": "^5.4 || ^6.4 || ^7.1",

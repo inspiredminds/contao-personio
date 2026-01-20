@@ -34,7 +34,7 @@ class PersonioJobController extends AbstractContentElementController
             return new Response();
         }
 
-        $template->setData(array_merge((array) $job, $template->getData()));
+        $template->setData([...(array) $job, ...$template->getData()]);
         $template->job = $job;
         $template->date = $job->createdAt->format($this->getPageModel()->datimFormat);
 

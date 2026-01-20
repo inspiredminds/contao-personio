@@ -13,7 +13,9 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class JobDescriptions
 {
     public function __construct(
-        /** @var list<JobDescription> */
+        /**
+         * @var list<JobDescription>
+         */
         #[SerializedName('jobDescription')]
         public array $descriptions,
     ) {

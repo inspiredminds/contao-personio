@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+/*
+ * (c) INSPIRED MINDS
+ */
+
 use Contao\EasyCodingStandard\Fixer\CommentLengthFixer;
 use Contao\EasyCodingStandard\Set\SetList;
 use PhpCsFixer\Fixer\Comment\HeaderCommentFixer;
@@ -13,6 +17,8 @@ return ECSConfig::configure()
     ->withPaths([
         __DIR__.'/contao',
         __DIR__.'/src',
+        __DIR__.'/ecs.php',
+        __DIR__.'/rector.php',
     ])
     ->withSkip([
         MethodChainingIndentationFixer::class => [
