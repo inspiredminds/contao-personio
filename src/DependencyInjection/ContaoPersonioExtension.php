@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace InspiredMinds\ContaoPersonio\DependencyInjection;
 
 use InspiredMinds\ContaoPersonio\Controller\ContentElement\PersonioJobApplicationController;
+use InspiredMinds\ContaoPersonio\Controller\ContentElement\PersonioJobController;
 use InspiredMinds\ContaoPersonio\Controller\ContentElement\PersonioJobsController;
 use InspiredMinds\ContaoPersonio\Controller\Page\PersonioJobPageController;
 use InspiredMinds\ContaoPersonio\HttpClient\PersonioAuthenticatedApiClientFactory;
@@ -53,6 +54,7 @@ class ContaoPersonioExtension extends Extension
             ;
         } else {
             $container->removeDefinition(PersonioXml::class);
+            $container->removeDefinition(PersonioJobController::class);
             $container->removeDefinition(PersonioJobsController::class);
             $container->removeDefinition(PersonioJobPageController::class);
         }

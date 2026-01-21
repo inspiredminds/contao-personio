@@ -51,7 +51,21 @@ class PersonioJobsController extends AbstractContentElementController
                 $jobs,
                 static function (Job $job) use ($filter): bool {
                     foreach ($filter as $f) {
-                        if (($f['field'] ?? null) && property_exists($job, $f['field']) && $job->{$f['field']} !== $f['value']) {
+                        $field = $f['field'] ?? null;
+                        $value = $f['value'] ?? '';
+
+                        if (!$field || !property_exists($job, $field)) {
+                            continue;
+                        }
+
+                        $result = match ($f['operator'] ?? 'is') {
+                            'is' => $job->{$field} === $value,
+                            'is-not' => $job->{$field} !== $value,
+                            'contains' => str_contains((string) $job->{$field}, $value),
+                            'contains-not' => !str_contains((string) $job->{$field}, $value),
+                        };
+
+                        if (false === $result) {
                             return false;
                         }
                     }

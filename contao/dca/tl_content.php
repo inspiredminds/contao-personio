@@ -33,18 +33,30 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['personio_applicationFields'] = [
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['personio_listFilter'] = [
     'inputType' => 'group',
-    'palette' => ['field', 'value'],
+    'palette' => ['field', 'operator', 'value'],
     'fields' => [
         'field' => [
             'label' => &$GLOBALS['TL_LANG']['tl_content']['personio_listFilter_field'],
             'inputType' => 'select',
             'options_callback' => [JobsPropertyOptionsCallbackListener::class, '__invoke'],
-            'eval' => ['tl_class' => 'w50'],
+            'eval' => ['tl_class' => 'w50 w33'],
+        ],
+        'operator' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_content']['personio_listFilter_operator'],
+            'inputType' => 'select',
+            'options' => [
+                'is',
+                'is-not',
+                'contains',
+                'contains-not',
+            ],
+            'reference' => &$GLOBALS['TL_LANG']['tl_content']['personio_listFilter_operators'],
+            'eval' => ['tl_class' => 'w50 w33'],
         ],
         'value' => [
             'label' => &$GLOBALS['TL_LANG']['tl_content']['personio_listFilter_value'],
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50'],
+            'eval' => ['tl_class' => 'w50 w33'],
         ],
     ],
     'order' => false,
@@ -67,6 +79,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['personio_sortDir'] = [
     'sql' => ['type' => 'string', 'length' => 4, 'default' => ''],
 ];
 
-$GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobsController::TYPE] = '{type_legend},type,headline;{config_legend},personio_listFilter,personio_sortField,personio_sortDir;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobsController::TYPE] = '{type_legend},type,headline;{filter_legend},personio_listFilter;{sort_legend},personio_sortField,personio_sortDir;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobController::TYPE] = '{type_legend},type,headline;{config_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobApplicationController::TYPE] = '{type_legend},type,headline;{config_legend},personio_applicationFields;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
