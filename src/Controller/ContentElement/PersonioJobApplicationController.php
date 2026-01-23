@@ -62,12 +62,22 @@ class PersonioJobApplicationController extends AbstractContentElementController
                     }
 
                     if ($widget instanceof UploadableWidgetInterface) {
-                        $files[$name] = $widget->value;
+                        if (!$widget->value) {
+                            return null;
+                        }
 
                         if (\is_array($widget->value)) {
-                            $files[$name] = array_map(fn (string $value): string => Path::join($this->projectDir, $value), (array) $widget->value);
+                            $first = reset($widget->value);
+
+                            if (\is_string($first)) {
+                                // Array of relative paths
+                                $files[$name] = array_map(fn (string $value): string => Path::join($this->projectDir, $value), (array) $widget->value);
+                            } else {
+                                // Array of upload informations
+                                $files[$name] = array_column($widget->value, 'tmp_name');
+                            }
                         } else {
-                            $files[$name] = Path::join($this->projectDir, $widget->value);
+                            $files[$name] = Path::join($this->projectDir, (string) $widget->value);
                         }
 
                         return null;
