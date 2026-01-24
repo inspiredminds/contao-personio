@@ -53,7 +53,7 @@ for the details of the job. This redirect page must be a page of the type _Perso
 
 ## Job Reader
 
-The _Personio job_ content element acts as the reader output for the details of a job. For it work, it needs to be
+The _Personio job_ content element acts as the reader output for the details of a job. For it to work, it needs to be
 placed within a page of the type _Personio job_.
 
 ## Application Form
@@ -98,7 +98,7 @@ class ModifyApplicationFormListener
 }
 ```
 
-The name of the field must match the internal name of the custom attribute.
+The name of the field must match Personio's internal name of the custom attribute.
 
 ### Form Generator
 
