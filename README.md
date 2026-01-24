@@ -48,7 +48,7 @@ You can of course also choose to store the Company ID as an environment variable
 
 ## Job List
 
-The _Personio jobs_ content elements lists all available jobs. Within the content element you can set a redirect page
+The _Personio jobs_ content element lists all available jobs. Within the content element you can set a redirect page
 for the details of the job. This redirect page must be a page of the type _Personio job_ (see below).
 
 ## Job Reader
