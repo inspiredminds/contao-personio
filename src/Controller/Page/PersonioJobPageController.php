@@ -40,7 +40,7 @@ class PersonioJobPageController
             throw new PageNotFoundException();
         }
 
-        $jobs = $this->personioApi->getJobs(LocaleUtil::getPrimaryLanguage($request->getLocale()))->jobs;
+        $jobs = $this->personioApi->getJobs(LocaleUtil::getPrimaryLanguage($pageModel->personio_languageOverride ?: $request->getLocale()))->jobs;
         $slugParts = explode('-', $autoItem);
         $jobId = end($slugParts);
 
