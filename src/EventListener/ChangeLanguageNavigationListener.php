@@ -18,7 +18,7 @@ class ChangeLanguageNavigationListener
 {
     public function __invoke(ChangelanguageNavigationEvent $event): void
     {
-        if (!$autoItem = Input::get('auto_item')) {
+        if (!$autoItem = Input::get('auto_item', false, true)) {
             return;
         }
 
