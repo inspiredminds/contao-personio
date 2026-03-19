@@ -43,7 +43,7 @@ class PersonioJobPageController
 
         $language = LocaleUtil::getPrimaryLanguage($pageModel->personio_languageOverride ?: $request->getLocale());
         $fallbacks = StringUtil::deserialize($pageModel->personio_languageFallbacks, true);
-        $jobs = $this->personioApi->getJobs($language, $fallbacks)?->jobs;
+        $jobs = $this->personioApi->getJobs($language, $fallbacks)->jobs;
         $slugParts = explode('-', $autoItem);
         $jobId = end($slugParts);
 
