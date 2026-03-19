@@ -13,10 +13,10 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class JobDescriptions
 {
     public function __construct(
-        #[SerializedName('jobDescription')]
         /**
-         * @var list<JobDescription> $descriptions
-         */
+         * @var list<JobDescription>
+        */
+        #[SerializedName('jobDescription')]
         public array $descriptions,
     ) {
     }
