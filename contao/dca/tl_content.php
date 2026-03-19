@@ -85,6 +85,13 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['personio_languageOverride'] = [
     'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
 ];
 
-$GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobsController::TYPE] = '{type_legend},type,headline;{config_legend},personio_languageOverride;{filter_legend},personio_listFilter;{sort_legend},personio_sortField,personio_sortDir;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['fields']['personio_languageFallbacks'] = [
+    'inputType' => 'checkboxWizard',
+    'eval' => ['tl_class' => 'clr', 'multiple' => true, 'helpwizard' => true],
+    'explanation' => 'personio_languageFallbacks',
+    'sql' => ['type' => 'text', 'length' => MySQLPlatform::LENGTH_LIMIT_TINYTEXT, 'notnull' => false],
+];
+
+$GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobsController::TYPE] = '{type_legend},type,headline;{config_legend},personio_languageOverride,personio_languageFallbacks;{filter_legend},personio_listFilter;{sort_legend},personio_sortField,personio_sortDir;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobController::TYPE] = '{type_legend},type,headline;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes'][PersonioJobApplicationController::TYPE] = '{type_legend},type,headline;{config_legend},personio_applicationFields;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';

@@ -8,3 +8,4 @@ declare(strict_types=1);
 
 $GLOBALS['TL_LANG']['tl_page']['personio_legend'] = 'Personio';
 $GLOBALS['TL_LANG']['tl_page']['personio_languageOverride'] = ['Language override', 'Overrides which language to fetch from Personio.'];
+$GLOBALS['TL_LANG']['tl_page']['personio_languageFallbacks'] = ['Language fallbacks', 'Language fallbacks for the job descriptions.'];

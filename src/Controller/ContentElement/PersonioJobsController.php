@@ -36,7 +36,9 @@ class PersonioJobsController extends AbstractContentElementController
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
     {
         try {
-            $jobs = $this->personioApi->getJobs(LocaleUtil::getPrimaryLanguage($model->personio_languageOverride ?: $request->getLocale()))?->jobs;
+            $language = LocaleUtil::getPrimaryLanguage($model->personio_languageOverride ?: $request->getLocale());
+            $fallbacks = StringUtil::deserialize($model->personio_languageFallbacks, true);
+            $jobs = $this->personioApi->getJobs($language, $fallbacks)?->jobs;
         } catch (\Throwable $e) {
             if ($this->container->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
                 return new Response('<p class="tl_error">'.$e->getMessage().'</p>');

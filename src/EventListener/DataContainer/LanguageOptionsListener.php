@@ -14,6 +14,8 @@ use Doctrine\DBAL\Connection;
 
 #[AsCallback('tl_content', 'fields.personio_languageOverride.options')]
 #[AsCallback('tl_page', 'fields.personio_languageOverride.options')]
+#[AsCallback('tl_content', 'fields.personio_languageFallbacks.options')]
+#[AsCallback('tl_page', 'fields.personio_languageFallbacks.options')]
 class LanguageOptionsListener
 {
     public function __construct(

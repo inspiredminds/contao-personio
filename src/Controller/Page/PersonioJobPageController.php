@@ -17,6 +17,7 @@ use Contao\CoreBundle\Util\LocaleUtil;
 use Contao\FrontendIndex;
 use Contao\Input;
 use Contao\PageModel;
+use Contao\StringUtil;
 use InspiredMinds\ContaoPersonio\Model\Job;
 use InspiredMinds\ContaoPersonio\PersonioXml;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +41,9 @@ class PersonioJobPageController
             throw new PageNotFoundException();
         }
 
-        $jobs = $this->personioApi->getJobs(LocaleUtil::getPrimaryLanguage($pageModel->personio_languageOverride ?: $request->getLocale()))->jobs;
+        $language = LocaleUtil::getPrimaryLanguage($pageModel->personio_languageOverride ?: $request->getLocale());
+        $fallbacks = StringUtil::deserialize($pageModel->personio_languageFallbacks, true);
+        $jobs = $this->personioApi->getJobs($language, $fallbacks)?->jobs;
         $slugParts = explode('-', $autoItem);
         $jobId = end($slugParts);
 

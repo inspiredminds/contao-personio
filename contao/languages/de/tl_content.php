@@ -29,3 +29,4 @@ $GLOBALS['TL_LANG']['tl_content']['personio_sortField'] = ['Sortierfeld', 'Optio
 $GLOBALS['TL_LANG']['tl_content']['personio_sortDir'] = ['Sortierrichtung', 'Die Sortierrichtung (aufsteigend oder absteigend).'];
 $GLOBALS['TL_LANG']['tl_content']['redirect_legend'] = 'Weiterleitung';
 $GLOBALS['TL_LANG']['tl_content']['personio_languageOverride'] = ['Sprachauswahl', 'Welche Sprache von Personio geholt werden soll.'];
+$GLOBALS['TL_LANG']['tl_content']['personio_languageFallbacks'] = ['Sprachen-Fallbacks', 'Sprachen-Fallbacks für die Job-Beschreibungen.'];
