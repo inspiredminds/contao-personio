@@ -26,6 +26,6 @@ class ChangeLanguageNavigationListener
             return;
         }
 
-        $event->getUrlParameterBag()->setUrlAttribute('items', $autoItem);
+        $event->getUrlParameterBag()->setUrlAttribute('auto_item', $autoItem);
     }
 }
