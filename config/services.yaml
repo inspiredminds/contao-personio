@@ -24,7 +24,7 @@ services:
         public: true
 
     contao_personio.personio_authenticated_api_client:
-        class: Symfony\Contracts\HttpClient\HttpClientInteface
+        class: Symfony\Contracts\HttpClient\HttpClientInterface
         factory: '@InspiredMinds\ContaoPersonio\HttpClient\PersonioAuthenticatedApiClientFactory'
 
     contao_personio.rate_limit.personio_api_storage:
